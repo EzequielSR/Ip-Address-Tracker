@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const API_KEY = process.env.API_KEY_GEOPIFY;
+const API_KEY = import.meta.env.VITE_API_KEY_GEOPIFY;
 
 export async function fetchIpData(ip: string = '') {
   const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}${ip ? `&ipAddress=${ip}` : ''}`;
