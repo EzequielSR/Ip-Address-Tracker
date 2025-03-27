@@ -1,7 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 const API_KEY = import.meta.env.VITE_API_KEY_GEOPIFY;
 
 export async function fetchIpData(ip: string = '') {
