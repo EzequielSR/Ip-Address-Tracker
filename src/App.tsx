@@ -39,7 +39,7 @@ function App() {
         className="bg-cover bg-center h-[45vh] sm:h-[40vh] lg:h-[35vh] flex flex-col items-center pt-6 sm:pt-8 px-4 sm:px-6 relative z-20"
         style={{
           backgroundImage:
-            "url('../../public/images/pattern-bg-desktop.png')",
+            "url('/images/pattern-bg-desktop.png')",
         }}
       >
         <Header />
