@@ -13,6 +13,8 @@ function App() {
   const [error, setError] = useState("");
 
   const handleIpDataFetch = async (ip: string = "") => {
+    if (!ip) return;
+
     try {
       const data = await fetchIpData(ip);
       setIpData(data);
@@ -21,10 +23,6 @@ function App() {
       setError(err instanceof Error ? err.message : "Failed to fetch IP data");
     }
   };
-
-  useEffect(() => {
-    handleIpDataFetch(ipAddress);
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,13 +47,13 @@ function App() {
           onSubmit={handleSubmit}
         />
         <ErrorMessage message={error} />
-        {ipData && <InfoCard data={ipData} />}
+        <InfoCard data={ipData || undefined} />
       </div>
 
       <div className="absolute top-[45vh] sm:top-[40vh] lg:top-[35vh] left-0 right-0 bottom-0 z-10">
-        {ipData && (
-          <Map position={[ipData.location.lat, ipData.location.lng]} />
-        )}
+        
+          <Map position={ipData ? [ipData.location.lat, ipData.location.lng] : undefined} />
+
       </div>
     </div>
   );

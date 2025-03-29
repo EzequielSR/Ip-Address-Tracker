@@ -10,21 +10,23 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 interface MapProps {
-    position: [number, number];
+    position?: [number, number];
   }
   
-  function ChangeView({ position }: MapProps) {
+  function ChangeView({ position }: { position: [number, number] }) {
     const map = useMap();
     useEffect(() => {
-      map.setView(position, 13);
+      map.setView(position, position === DEFAULT_POSITION ? 2 : 13);
     }, [map, position]);
     return null;
   }
-export default function Map({position}: MapProps){
+
+  const DEFAULT_POSITION: [number, number] = [20, 0];
+export default function Map({position = DEFAULT_POSITION}: MapProps){
     return(
         <MapContainer
         center={position}
-        zoom={13}
+        zoom={position === DEFAULT_POSITION ? 2 : 13}
         className="h-full w-full"
         zoomControl={false}
       >
@@ -32,7 +34,7 @@ export default function Map({position}: MapProps){
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position} />
+        {position !== DEFAULT_POSITION && <Marker position={position} />} 
         <ChangeView position={position} />
       </MapContainer>
     )
