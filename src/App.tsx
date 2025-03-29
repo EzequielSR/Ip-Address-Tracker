@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import SearchBar from "./components/SearchIp/SearchIp";
 import Map from "./components/Map/Map";
@@ -53,7 +53,6 @@ function App() {
       <div className="absolute top-[45vh] sm:top-[40vh] lg:top-[35vh] left-0 right-0 bottom-0 z-10">
         
           <Map position={ipData ? [ipData.location.lat, ipData.location.lng] : undefined} />
-
       </div>
     </div>
   );
